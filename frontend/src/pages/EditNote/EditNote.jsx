@@ -11,14 +11,11 @@ const EditNote = () => {
 
   useEffect(() => {
     const fetchNote = async () => {
-      const response = await fetch(`http://localhost:5000/api/notes/${id}`);
-
-      if (response.ok) {
-        const note = await response.json();
-        console.log(note);
-
-        setNote({ title: note.title, content: note.content });
-      }
+      await axios.get(`http://localhost:5000/api/notes/${id}`).then(res => {
+        if (res.status === 200) {
+          setNote({ title: res.data.title, content: res.data.content });
+        }
+      });
     };
 
     fetchNote();

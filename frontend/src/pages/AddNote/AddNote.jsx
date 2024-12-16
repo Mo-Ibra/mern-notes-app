@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { toast, ToastContainer } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
@@ -17,20 +18,14 @@ const AddNote = () => {
 
     try {
 
-      const response = await fetch("http://localhost:5000/api/noteds", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(note),
+      await axios.post("http://localhost:5000/api/notes", note, { headers: { 'Content-Type': 'application/json' } }).then(res => {
+        if (res.status === 201) {
+          console.log(res.data);
+          toast.success("Note added successfully", { position: 'bottom-right'});
+  
+          setNote({ title: "", content: ""});
+        }
       });
-
-      if (response.ok) {
-        console.log(response);
-        toast.success("Note added successfully", { position: 'bottom-right'});
-
-        setNote({ title: "", content: ""});
-      }
 
     } catch (err) {
       console.log(err);
