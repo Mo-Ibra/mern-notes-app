@@ -1,6 +1,6 @@
 # Notes Application 📝
 
-This is a full-stack notes application built with **Node.js**, **Express.js**, **SQLite/MySQL**, and **React.js** (using React Router). It allows users to create, view, edit, and delete notes with additional features like search, rich text editing, modals, spinners, and more.
+This is a full-stack notes application built with **Node.js**, **Express.js**, **MySQL**, and **React.js** (using React Router). It allows users to create, view, edit, and delete notes with additional features like search, modals, spinners, and more.
 
 ---
 
