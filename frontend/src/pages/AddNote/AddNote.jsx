@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
 
@@ -13,6 +14,11 @@ const AddNote = () => {
 
     if (!note.title || !note.content) {
       toast.error("Please enter a title and content", { position: 'bottom-right'});
+      return;
+    }
+
+    if (note.title.length < 5 || note.content.length < 5) {
+      toast.error("Title and content must be at least 5 characters long", { position: 'bottom-right'});
       return;
     }
 
@@ -65,6 +71,11 @@ const AddNote = () => {
         >
           Add Note
         </button>
+        <Link to="/">
+          <button className="bg-gray-500 text-white px-4 py-2 rounded ml-2">
+            Back
+          </button>
+        </Link>
         <ToastContainer />
       </form>
     </div>
