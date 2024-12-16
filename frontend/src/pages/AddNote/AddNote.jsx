@@ -48,8 +48,8 @@ const AddNote = () => {
   }
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Add Note</h1>
+    <div className="py-8">
+      <h1 className="text-3xl font-bold text-blue-600 mb-4">Add Note</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"

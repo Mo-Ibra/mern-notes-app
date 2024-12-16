@@ -34,16 +34,17 @@ const Home = () => {
   }
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Notes</h1>
-      <Link to="/add-note" className="bg-blue-500 text-white px-4 py-2 rounded mb-4 inline-block">
-        Add Note
-      </Link>
+    <div className="py-8">
+      <h1 className="text-3xl font-bold text-blue-600 mb-4">Notes</h1>
 
       {/* Render All Notes */}
       { notes && notes.map(note => (
         <NoteCard key={note.id} id={note.id} title={note.title} content={note.content} />
       )) }
+
+      <Link to="/add-note" className="bg-blue-500 text-white px-4 py-2 rounded mb-4 inline-block">
+        Add Note
+      </Link>
 
     </div>
   )
