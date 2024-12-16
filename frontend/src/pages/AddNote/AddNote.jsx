@@ -1,13 +1,16 @@
-import axios from "axios";
+import api from "../../config/axiosConfig";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
+import { useLoading } from "../../context/LoadingContext";
 
 const AddNote = () => {
 
   const [note, setNote] = useState({ title: "", content: "" });
   const [error, setError] = useState(null);
+  
+  const { startLoading, stopLoading } = useLoading();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,9 +25,11 @@ const AddNote = () => {
       return;
     }
 
+    startLoading();
+
     try {
 
-      await axios.post("http://localhost:5000/api/notes", note, { headers: { 'Content-Type': 'application/json' } }).then(res => {
+      await api.post("http://localhost:5000/api/notes", note).then(res => {
         if (res.status === 201) {
           console.log(res.data);
           toast.success("Note added successfully", { position: 'bottom-right'});
@@ -36,6 +41,8 @@ const AddNote = () => {
     } catch (err) {
       console.log(err);
       setError(err);
+    } finally {
+      stopLoading();
     }
   }
 

@@ -1,17 +1,20 @@
-import axios from "axios";
+import api from '../../config/axiosConfig';
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
+import { useLoading } from "../../context/LoadingContext";
 
 const EditNote = () => {
   const [note, setNote] = useState({ title: "", content: "" });
   const [error, setError] = useState(null);
   const { id } = useParams();
 
+  const { startLoading, stopLoading } = useLoading();
+
   useEffect(() => {
     const fetchNote = async () => {
-      await axios.get(`http://localhost:5000/api/notes/${id}`).then(res => {
+      await api.get(`http://localhost:5000/api/notes/${id}`).then(res => {
         if (res.status === 200) {
           setNote({ title: res.data.title, content: res.data.content });
         }
@@ -31,8 +34,10 @@ const EditNote = () => {
       return;
     }
 
+    startLoading();
+
     try {
-      await axios
+      await api
         .put(`http://localhost:5000/api/notes/${id}`, {
           title: note.title,
           content: note.content,
@@ -49,6 +54,8 @@ const EditNote = () => {
     } catch (err) {
       console.log(err);
       setError(err);
+    } finally {
+      stopLoading();
     }
   };
 

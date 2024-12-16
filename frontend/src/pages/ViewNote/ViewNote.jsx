@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../../config/axiosConfig";
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -12,7 +12,7 @@ const ViewNote = () => {
 
   useEffect(() => {
     const fetchNote = async () => {
-      await axios.get(`http://localhost:5000/api/notes/${id}`).then((res) => {
+      await api.get(`http://localhost:5000/api/notes/${id}`).then((res) => {
         if (res.status === 200) {
           setNote({ title: res.data.title, content: res.data.content });
         }
@@ -23,7 +23,7 @@ const ViewNote = () => {
   }, [id]);
 
   const handleDelete = async () => {
-    await axios
+    await api
       .delete(`http://localhost:5000/api/notes/${id}`, {
         headers: { "Content-Type": "application/json" },
         data: { validation: 'delete' },
