@@ -53,7 +53,7 @@ const ViewNote = () => {
       </button>
 
       <Link to="/">
-        <button className="bg-gray-500 text-white px-4 py-2 rounded ml-2">
+        <button className="bg-blue-500 text-white px-4 py-2 rounded ml-2">
           Return Back
         </button>
       </Link>
