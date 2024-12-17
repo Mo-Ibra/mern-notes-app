@@ -4,6 +4,24 @@ This is a full-stack notes application built with **Node.js**, **Express.js**, *
 
 ---
 
+## Screenshots
+
+### Note Home
+
+![Homepage](preview/notes-home.png)
+
+### Add Note
+
+![Add Note With Toast Message](preview/add-note.png)
+
+### About
+
+![About](preview/notes-about.png)
+
+### Delete
+
+![About](preview/note-delete-modal.png)
+
 ## Features ✨
 
 - **Frontend:**
